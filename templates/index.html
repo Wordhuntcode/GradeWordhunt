@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Word Hunt Score Checker</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; max-width: 600px; margin: auto; }
+    input, button { padding: 8px; margin: 10px 0; width: 100%; }
+    table { border-collapse: collapse; margin-top: 20px; }
+    td { padding: 8px; border: 1px solid #ccc; text-align: center; }
+  </style>
+</head>
+<body>
+  <h1>Word Hunt Analyzer</h1>
+  <form method="post" enctype="multipart/form-data">
+    <label>Upload Screenshot:</label>
+    <input type="file" name="screenshot" accept="image/*" required><br>
+    <label>Your Score:</label>
+    <input type="number" name="actual_score" required><br>
+    <button type="submit">Analyze</button>
+  </form>
+
+  {% if board %}
+    <h2>🧩 Detected Board</h2>
+    <table>
+      {% for row in board %}
+        <tr>
+          {% for letter in row %}
+            <td>{{ letter }}</td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </table>
+
+    <h2>📊 Results</h2>
+    <p><strong>Your Score:</strong> {{ your_score }}</p>
+    <p><strong>Max Score:</strong> {{ max_score }}</p>
+    <p><strong>Percentage:</strong> {{ percent }}%</p>
+
+    <h3>📜 Words Found ({{ words|length }})</h3>
+    <ul>
+      {% for word in words %}
+        <li>{{ word }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</body>
+</html>

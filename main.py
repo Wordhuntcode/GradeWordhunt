@@ -1,6 +1,8 @@
 import cv2
 import os
 import numpy as np
+import csv
+from datetime import datetime
 
 # --- Configuration ---
 SCREENSHOT = "your_screenshot.png"
@@ -124,3 +126,15 @@ percent = round(your_score / max_score * 100, 2) if max_score > 0 else 0
 
 print(f"\n📊 You scored {your_score} out of {max_score}")
 print(f"🎯 That's {percent}% of the max score")
+
+save_path = "games.csv"
+with open(save_path, "a", newline="") as f:
+    writer = csv.writer(f)
+    writer.writerow([
+        datetime.now().isoformat(),
+        "".join("".join(row) for row in board),  # flatten 4x4 into 16-letter string
+        ",".join(sorted(found)),
+        score,
+        max_score,
+        percent
+    ])

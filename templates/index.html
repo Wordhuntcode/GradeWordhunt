@@ -89,6 +89,10 @@ body {
   .score-block strong {
     color: #222;
   }
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 </style>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -96,6 +100,20 @@ body {
   <link rel="apple-touch-icon" href="icon.png">
   <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
 </head>
+<div id="loading" style="display:none; text-align:center; margin-top: 1.5rem;">
+  <p style="font-weight: bold; font-size: 1.2rem;">Analyzing screenshot...</p>
+  <div style="margin:auto; width:40px; height:40px; border:5px solid #f4d9b1; border-top:5px solid #333; border-radius:50%; animation: spin 1s linear infinite;"></div>
+</div>
+
+<script>
+  const form = document.querySelector("form");
+  const loading = document.getElementById("loading");
+
+  form.addEventListener("submit", () => {
+    loading.style.display = "block";
+  });
+</script>
+
 <body>
   <h1>Word Hunt Grader</h1>
   <form method="post" enctype="multipart/form-data">

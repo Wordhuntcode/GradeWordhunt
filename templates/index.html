@@ -1,13 +1,95 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Word Hunt Score Checker</title>
+  <title>Word Hunt Grader</title>
   <style>
-    body { font-family: sans-serif; padding: 2rem; max-width: 600px; margin: auto; }
-    input, button { padding: 8px; margin: 10px 0; width: 100%; }
-    table { border-collapse: collapse; margin-top: 20px; }
-    td { padding: 8px; border: 1px solid #ccc; text-align: center; }
-  </style>
+body {
+  font-family: 'Helvetica Neue', sans-serif;
+  background: url("{{ url_for('static', filename='wordhunt-bg.png') }}");
+  background-size: cover;
+  background-repeat: repeat;
+  margin: 0;
+  padding: 2rem;
+  color: #222;
+}
+
+  h1, h2, h3 {
+    text-align: center;
+    color: #1d1d1d;
+  }
+
+  form {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 16px;
+    max-width: 500px;
+    margin: 2rem auto;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+
+  input, button {
+    padding: 10px;
+    margin-top: 10px;
+    width: 100%;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+
+  button {
+    background: #4caf50;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: #45a045;
+  }
+
+  table {
+    margin: 1rem auto;
+    border-collapse: collapse;
+  }
+
+  td {
+    background: #f4d9b1; /* tile tan */
+    color: black;
+    font-weight: bold;
+    width: 50px;
+    height: 50px;
+    border: 2px solid #fff;
+    text-align: center;
+    font-size: 1.2rem;
+    border-radius: 8px;
+  }
+
+  .results {
+    max-width: 600px;
+    margin: 2rem auto;
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+
+  ul {
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+  }
+
+  .score-block {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+  }
+
+  .score-block strong {
+    color: #222;
+  }
+</style>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Word Hunt">
@@ -15,7 +97,7 @@
   <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
 </head>
 <body>
-  <h1>Word Hunt Analyzer</h1>
+  <h1>Word Hunt Grader</h1>
   <form method="post" enctype="multipart/form-data">
     <label>Upload Screenshot:</label>
     <input type="file" name="screenshot" accept="image/*" required><br>

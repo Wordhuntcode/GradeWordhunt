@@ -138,3 +138,4 @@ with open(save_path, "a", newline="") as f:
         max_score,
         percent
     ])
+return render_template('index.html', ...)
